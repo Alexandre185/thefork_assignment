@@ -56,9 +56,10 @@ Proposed solution
 ========================
 
 For this assignment, I worked with Python 3.8.8 (and Docker Desktop 3.2.1 with the Postgres image for the database part).
+
 I used the following packages: pandas, sqlalchemy (with psycopg2), pytest, numpy, time, logging, functools, csv, io
 
-The project is strctured as follow: projet main folder (thefork_assignment) has 2 directories: monthly_report and tests
+The project is strctured as follow: projet main folder (thefork_assignment) has 2 directories: monthly_report and tests.
 
 monthly_report contains:
  - __init__.py, empty file
