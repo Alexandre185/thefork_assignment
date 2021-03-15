@@ -55,11 +55,10 @@ Proposed solution
 
 ========================
 
-For this assignment, I worked with Python 3.8.8 (and Docker Desktop 3.2.1 with the Postgres image for the database part).
-
+For this assignment, I worked with Python 3.8.8 (and Docker Desktop 3.2.1 with the Postgres image for the database part).       
 I used the following packages: pandas, sqlalchemy (with psycopg2), pytest, numpy, time, logging, functools, csv, io
 
-The project is strctured as follow: projet main folder (thefork_assignment) has 2 directories: monthly_report and tests.
+The project is strctured as follows: the project main folder (thefork_assignment) has 2 directories: monthly_report and tests.
 
 monthly_report contains:
  - __init__.py, empty file
@@ -69,11 +68,12 @@ monthly_report contains:
  - inputs.py, functions that handle the inputs asked to the user when the code is executed
  - checks.py, functions that perform validity checks on the data to verify it is as expected/ not corrupted
  - decorators.py, contains the decorators (actually only one used to log the execution time of a function to the 'monthly_report.log' file in the directory)
- 
+
 tests contains:
  - __init__.py, empty file
  - run_tests.py, file that runs all the tests when executed
  - test_core.py, unit test functions for all the core functions
+
 
 When executing the main.py file, the following will be asked to the user:
  - the path to the 'bookings.csv' file, must be full path including the bookings.csv part
@@ -87,7 +87,8 @@ When executing the main.py file, the following will be asked to the user:
 By default, the data will be sent to a table named 'monthly_reports_restaurant' in the specified database. If the table doesn't exist it will be created, if it exists the data will be append to it. This behavior can be changed by modifying the parameters if_exists from 'append' to 'replace' if we want to recreate the table if it exists. I assumed the append option because if it is an operation we want to run every month and add the result to the monthly report table on the postgres database.
 To change the table name, it will have to be passed as a paramater to the function 'io_data.send_df_to_postgres_db' called in the main function in the main.py file.
 
-Regarding the actual data pipeline to generate the monthly report:
+
+Regarding the actual data pipeline to generate the monthly report, I did the following.
 
 The generation of the monthly report from the bookings data is mainly a group by on the restaurant id and the month with 3 aggregation: a count on booking id, and sums on guests and amout.
 So I broke down the pipeline in the following steps:
@@ -110,6 +111,7 @@ GROUP BY restaurant_id, restaurant_name, country, month) AS monthly_restaurants_
 At first, I used the groupby pandas function with the apply function with a custom aggregation function that I had defined. However using the groupby function with the aggregate function and a dictionnary of the aggregation I wanted to apply made the operation go from over 4s to less than 0.05s.
 
 For the postprocessing, I only had to process back the amount column to get back the currency signs into it and turning back its type to string.
+
 
 Possible ameliorations:
  - more checks:
