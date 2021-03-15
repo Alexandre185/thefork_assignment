@@ -83,7 +83,7 @@ When executing the main.py file, the following will be asked to the user:
  - the port on which access the postgresSQL instance (if left blank will default to 5432)
  - if the user wants to save locally the montly report as a csv file, if yes the user will be asked the full path where to save it
 
-By default, the data will be sent to a table named 'monthly_reports_restaurant' in the specified databse. If the table doesn't exist it will be created, if it exists the data will be append to it. This behavior can be changed by modifying the parameters if_exists from 'append' to 'replace' if we want to recreate the table if it exists. I assumed the append option because if it is an operation we want to run every month and add the result to the monthly report table on the postgres database.
+By default, the data will be sent to a table named 'monthly_reports_restaurant' in the specified database. If the table doesn't exist it will be created, if it exists the data will be append to it. This behavior can be changed by modifying the parameters if_exists from 'append' to 'replace' if we want to recreate the table if it exists. I assumed the append option because if it is an operation we want to run every month and add the result to the monthly report table on the postgres database.
 To change the table name, it will have to be passed as a paramater to the function 'io_data.send_df_to_postgres_db' called in the main function in the main.py file.
 
 Regarding the actual data pipeline to generate the monthly report:
